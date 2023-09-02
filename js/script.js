@@ -41,13 +41,36 @@ const displayCardContainer = async (categoryId) => {
 
 
     const displayCard = categories => {
+      //console.log(categories.length);
+   
+
     const cardContainer = document.getElementById('card-container');
-    console.log('cardContainer');
+    //console.log('cardContainer');
     cardContainer.innerHTML = "";
 
+    if(categories.length===0){
+      
+      const card = document.createElement('div');    
+        card.classList = "mt-auto mx-auto flex";         
+        card.innerHTML = `         
+        <img class="w-12 h-12 rounded-full" src="./86-PHero-tube-main/Icon.png" />       
+        <br>
+        <h2 class="card-title">Opps!! Sorry, There is no content here</h2> 
+      `      
+       cardContainer.appendChild(card)
+     }
+
+
+
+
+
+
+
     categories.forEach(elem => {
+
+     
         
-        console.log(elem.authors[0].profile_name);
+        //console.log(elem.authors[0].profile_name);
         //console.log(category);
         const card = document.createElement('div');    
         card.classList = "bg-red-200 p-2 m-4 active:bg-red-400 hover:bg-red-600 visited:bg-red-800";         
@@ -81,9 +104,10 @@ const displayCardContainer = async (categoryId) => {
      cardContainer.appendChild(card)
     })
     };
+  
    
 
 
 //displayCardContainer(categoryId) 
-displayCard()
+displayCardContainer('${category.category_id}');
 loadCategory()
