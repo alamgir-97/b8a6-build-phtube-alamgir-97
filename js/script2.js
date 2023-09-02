@@ -117,3 +117,28 @@ const displayCardContainer = async (categoryId) => {
 //displayCardContainer(categoryId) 
 displayCardContainer('${category.category_id}');
 loadCategory()
+
+
+<h2 class="card-title">${elem.others.posted_date}</h2>
+
+// // array by elem.others.view
+// let elements = []
+
+// //reverse element is not working properly
+// let reverseElements = elements.sort(function(a, b) {
+//   return b - a})
+//console.log(elements);
+//console.log(reverseElements);
+
+
+
+//  const verifiedStatus = elem.authors[0].verified;
+  //  console.log(verifiedStatus);
+  //  if(verifiedStatus ===""||false){
+  //   const verifiedIcon = document.getElementById("verified-icon");
+  //   console.log(verifiedIcon);
+  // verifiedIcon.classList = "hidden";
+  //  cardContainer.appendChild(card)   
+  //  }
+
+  

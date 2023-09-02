@@ -8,35 +8,41 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="max-w-screen-xl mx-auto">
-    <header>
+    <header class="max-w-screen-xl mx-auto">
         <nav>
-            <div class="navbar bg-base-100">
+            <div class="navbar bg-base-100 p-8">
                 <div class="navbar-start">              
                     <!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg> -->
                     <img src="./86-PHero-tube-main/Logo.png">                                    
                 </div>
                 <div class="navbar-center">
-                    <button class="btn btn-ghost normal-case text-xl">Sort by view</button>
+                    <button class="btn normal-case text-xl">Sort by view</button>
                 </div>
                 <div class="navbar-end">
-                    <button class="btn btn-primary normal-case text-xl"><a href="blog.html" target="_blank">Blog</a></button>                  
+                    <button class="btn bg-red-500 normal-case text-white text-xl"><a href="blog.html" target="_blank">Blog</a></button>                  
                 </div>                  
-            </div>              
+            </div>  
+            <hr>            
         </nav>
         
     </header>
-    <main >
+    <main class="max-w-screen-xl mx-auto">
         <section id="category-container" class="flex justify-center">
            
         </section>
-        <section id="card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4 m-4">
+        <section id="card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-4">
             
            
         </section>
         
 
     </main>
-    <footer></footer>
+    <footer>
+        <button class="m-48 bg-red-500 hover:bg-violet-600 active:bg-amber-700 focus:outline-none  focus:ring focus:ring-green-300 ...">
+            Save changes
+          </button>
+
+    </footer>
     
 </body>
 <script src="./js/script.js">
