@@ -38,81 +38,57 @@ const displayCardContainer = async (categoryId) => {
 }
 
 //Step-3.2: Display cards dynamically
-  const displayCard = categories => {
-    //console.log(categories.length);
- 
-
+  const displayCard = categories => {  
   const cardContainer = document.getElementById('card-container');
-  //console.log('cardContainer');
-  cardContainer.innerHTML = "";
+ 
+ //console.log(categories.length);
+  if(categories.length!=0){
+    cardContainer.innerHTML = "";
 
-  if(categories.length===0)
-  
-  
-  {
-    
-    const card = document.createElement('div');    
-      card.classList = "mt-auto mx-auto flex rounded-lg border-0";         
-      card.innerHTML = `         
-      <img class="w-12 h-12 rounded-full" src="./86-PHero-tube-main/Icon.png" />       
-      <br>
-      <h2 class="card-title">Opps!! Sorry, There is no content here</h2> 
-    `      
-     cardContainer.appendChild(card)
-   }
-   else 
-   {
 
-     
-     
-     
-     
-     // let elements = []
-     // //reverse element is not working properly
-     // let reverseElements = elements.sort(function(a, b) {
-       //   return b - a})
-       // console.log(elements);
-       // console.log(reverseElements);
+    //code for sort by view but to show cards on ascending order based on view numbers
+     let elements = []
+     //reverse element is not working properly
+      let reverseElements = elements.sort(function(a, b) {
+       return b - a})
+       //console.log(elements);
+       //console.log(reverseElements);
        
-       // let index = 0;
+       
        categories.forEach(elem => {
          
-         //    const element =elem.others.views.slice(0,-1)
-//    console.log(element)
-//    elements.push(element)
-//    index++;
-//    console.log(index);
+        //numeric value of view numbers
+        const element =elem.others.views.slice(0,-1)
+          //console.log(element)
+        elements.push(element)
+
 
       
 //console.log(elem.authors[0].profile_name);
 //console.log(category);
 const card = document.createElement('div');    
-card.classList = "bg-base-200";         
+card.classList = "bg-base-200 mt-6";         
 card.innerHTML = `
-      <figure><img class="h-48 w-full rounded-2xl" src="${elem.thumbnail}" /></figure>
-      <h2 class="-mt-8 card-title text-green-500">${elem.others.posted_date}</h2>
-      
-      
-      <div class="bg-base-200 p-2 m-4 flex" >
-  
-      
-      <div class="avatar">
-    <div class="w-12 h-12 rounded-full p-4">
-      <img src="${elem.authors[0].profile_picture}" />       
-      </div>
+      <figure><img class="h-48 w-full rounded-2xl z-0" src="${elem.thumbnail}" /></figure>
+      <div class="relative"> 
+      <h2 class="-mt-12 right-4 text-white text-right bg-gray-800 px-4 p-1 rounded-md absolute z-10">${elem.others.posted_date}</h2>
       </div>
       
       
-      <div class="card">
-        <h2 class="card-title">${elem.title}</h2>
+      <div class="bg-sky-500 mt-4 flex">
+
+      <img class="ml-4 mt-2 w-10 h-10 rounded-full" src="${elem.authors[0].profile_picture}" />    
+      
+      <div class="card pl-4">
+        <h2 class="card-title pb-2">${elem.title}</h2>
         
         <div class="card-actions">
-        <p>${elem.authors[0].profile_name}</p>
+        <p class="text-gray-200">${elem.authors[0].profile_name}</p>
         <img id="verified-icon" class="bg-blue-300 w-6 h-6 rounded-full" src="./p86-PHero-main/verified.jpg" />
         
         </div>
         
-        <p>${elem.others.views}</p>
+        <p class="text-gray-200">${elem.others.views}</p>
         </div>
         
         
@@ -120,6 +96,8 @@ card.innerHTML = `
         `
         
    cardContainer.appendChild(card)
+
+   //show verified badge
    const verifiedIcon = document.getElementById("verified-icon");
    console.log(verifiedIcon);
    const verifiedStatus = elem.authors[0].verified
@@ -128,19 +106,28 @@ card.innerHTML = `
      console.log("verified Status icon changed");
   let verifiedIcon2 = document.getElementById("verified-icon");
   console.log(verifiedIcon2);
-  //hidden is not adding ?????
+  //hidden is not working ?????
   verifiedIcon2.classList.add = "hidden";
 } 
    
-    
-    
+})
   }
-  
-  )
-  }};
-
- 
-
+else{
+    cardContainer.innerHTML = "";
+    const card = document.createElement('div');    
+    card.classList = "my-auto mx-auto flex rounded-lg border-0";         
+    card.innerHTML = `  
+    <div>       
+    <img class="w-12 h-12 rounded-full" src="./86-PHero-tube-main/Icon.png" />  
+    </div>     
+    
+    <div> 
+    <h2 class="card-title">Opps!! Sorry, There is no content here</h2> 
+    </div>
+  `      
+   cardContainer.appendChild(card)
+ }
+};
 
 //displayCardContainer(categoryId) 
 displayCardContainer('${category.category_id}');
