@@ -5,6 +5,7 @@ const loadCategory = async () => {
     categories = data.data
     //console.log(categories);
     displayCategory(categories);
+   
   }
   
   //Step-2: Display category buttons dynamically
@@ -29,16 +30,15 @@ const loadCategory = async () => {
   //Step-3: Display cards dynamically while clicked on category buttons
   //Step-3.1: Fetch data from server for the purpose
   const displayCardContainer = async (categoryId) => {
-    const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${categoryId}`);
-  
-    const data = await res.json();
-    //console.log(data);
-    const categories = data.data;
-    
-    displayCard(categories);
-    
+    const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${categoryId}`);  
+    const data = await res.json();  
+    const categories = data.data;    
+    displayCard(categories);    
   }
   
+
+  let viewsOrder = []; 
+  console.log(viewsOrder);
   //Step-3.2: Display cards dynamically
     const displayCard = categories => {  
     const cardContainer = document.getElementById('card-container'); 
@@ -47,21 +47,14 @@ const loadCategory = async () => {
     cardContainer2.innerHTML = "";
     
    //console.log(categories.length);
-
+  
+   
 
     if(categories.length!=0){   
         
-      //code for sort by view but to show cards on ascending order based on view numbers
-      let viewsOrder = [] 
-      //console.log(viewsOrder);
+      //code for sort by view but to show cards on ascending order based on view numbers   
       
-      
-
       categories.forEach(elem => {
-
-
-
-
         //numeric value of view numbers
         const viewNumberNumeric =parseFloat(elem.others.views.slice(0,-1))
         //console.log(viewNumberNumeric)
@@ -92,11 +85,7 @@ const loadCategory = async () => {
     }
 
 const time = timeConvert(elem.others.posted_date);
-//console.log(elem.others.posted_date);
-//console.log(time);
-        
-  //console.log(elem.authors[0].profile_name);
-  //console.log(category);
+
   const card = document.createElement('div');    
   card.classList = "";         
   card.innerHTML = `
@@ -125,25 +114,20 @@ const time = timeConvert(elem.others.posted_date);
           `          
         cardContainer.appendChild(card)
         const verifiedStatus = elem.authors[0].verified
-        const naMe = elem.authors[0].profile_name
-      // console.log(verifiedStatus);
-      // console.log(naMe)
-      // showVerifiedStatus(verifiedStatus,naMe)
+        
+     
+       showVerifiedStatus(verifiedStatus)
   })
-    function showVerifiedStatus (verifiedStatus,naMe){
-      //console.log(verifiedStatus);
+    function showVerifiedStatus (verifiedStatus){     
       const verifiedIcon = document.getElementById("verified-icon"); 
       if(verifiedStatus===false){        
-      verifiedIcon.classList.add("hidden");    
-      // console.log(verifiedIcon);  
-      // console.log("changed verified status"); 
-      // console.log(naMe);
-      // console.log(verifiedStatus);         
+      verifiedIcon.classList.add("hidden");             
     }
    
   } 
     }
-  else{      
+  else{
+    const emptyString = () =>{     
     cardContainer.innerHTML = "";    
       const card = document.createElement('div');    
       card.classList = "my-auto mx-auto rounded-lg border-0  mt-28";         
@@ -156,9 +140,17 @@ const time = timeConvert(elem.others.posted_date);
     `      
      cardContainer2.appendChild(card)
    }
-  };
+   emptyString();
+  }   
   
+  };
+
+
   //displayCardContainer(categoryId) 
   displayCardContainer('${category.category_id}');
   loadCategory();
   displayCardContainer('1000')
+
+
+
+  
